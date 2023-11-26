@@ -39,13 +39,13 @@ export default class BaseService<T> {
         return httpClient({
             url: requestUrl,
             options: {
+                ...options,
                 method: 'POST',
-                body: JSON.stringify(requestBody),
+                body: JSON.stringify(requestBody),                      
                 headers: {
                     'Content-Type': 'application/json', 
-                    ...options.headers,
+                    ...options?.headers,
                 },
-                ...options
             }
         })
         .then((response : T) => response)
@@ -63,13 +63,13 @@ export default class BaseService<T> {
         return httpClient({
             url: requestUrl,
             options: {
+                ...options,
                 method: 'PUT',
                 body: JSON.stringify(requestBody),
                 headers: {
                     'Content-Type': 'application/json', 
-                    ...options.headers,
-                },
-                ...options
+                    ...options?.headers,
+                }                
             }
         })
         .then((response : T) => response)
@@ -86,13 +86,13 @@ export default class BaseService<T> {
         return httpClient({
             url: requestUrl,
             options: {
+                ...options,
                 method: 'DELETE',
                 body: JSON.stringify({}),
                 headers: {
                     'Content-Type': 'application/json', 
-                    ...options.headers,
-                },
-                ...options
+                    ...options?.headers,
+                },                
             }
         })
         .then((response : T) => response)

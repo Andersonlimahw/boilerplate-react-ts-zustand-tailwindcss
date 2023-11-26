@@ -14,7 +14,7 @@ export interface IGetInput {
 export interface IPostInput {
   endpoint: string;
   options?: any;
-  requestBody: string,
+  requestBody: any,
 }
 
 export type IPutInput = IPostInput;
