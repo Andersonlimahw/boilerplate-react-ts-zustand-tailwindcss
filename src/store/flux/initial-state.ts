@@ -1,5 +1,6 @@
 
 export const initialState = { 
+  people: [],
   theme: {
     type: 'blue',
     styles: {

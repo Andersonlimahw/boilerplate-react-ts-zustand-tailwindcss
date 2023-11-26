@@ -26,7 +26,6 @@ export const Chat = () => {
   }
 
   const screnType = isMobile() ? 'mobile' : 'default';
-  const [firstPerson] = people as PeopleModel[];
 
   return (
     <>
@@ -62,7 +61,7 @@ export const Chat = () => {
                 <br />
                 count: {people?.length}
                 <br />
-                Name: {firstPerson?.name}
+                Name: {people && people[0]?.name}
               </h1>
             </div>
           </div>
