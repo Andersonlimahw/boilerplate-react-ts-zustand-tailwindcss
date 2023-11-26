@@ -1,7 +1,12 @@
 const enviroment = import.meta.env;
-export const BASE_URL = enviroment.VITE_API_BASE_URL;
+const BASE_URL_API = enviroment.VITE_API_BASE_URL;
+const NAMESPACE = enviroment.VITE_API_NAME_SPACE;
 
-export const NAMESPACE = enviroment.VITE_API_BASE_URL;
+export let BASE_URL = `${BASE_URL_API}/${NAMESPACE}`;
 
-export const GET_PEOPLE_ROUTE = `${BASE_URL}/${NAMESPACE}/people`;
-export const GET_PEOPLE_BY_ID_ROUTE = `${BASE_URL}/${NAMESPACE}/people/:id`;
+if(import.meta.env.DEV) {
+  BASE_URL = '';
+}
+
+export const PEOPLE_ROUTE = `people`;
+export const PEOPLE_BY_ID_ROUTE = `people/:id`;

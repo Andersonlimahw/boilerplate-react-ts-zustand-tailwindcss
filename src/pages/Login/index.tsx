@@ -3,11 +3,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
 export const Login = () => {
     const navigate = useNavigate();
     const handleLogin = () => {
         toast("Welcome!.", { type: "success" });
+        navigate('/chat');
     }
     return (
         <div

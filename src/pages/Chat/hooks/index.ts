@@ -1,1 +1,1 @@
-export * from './use-firebase-chat';
+export * from './use-hook-sample';

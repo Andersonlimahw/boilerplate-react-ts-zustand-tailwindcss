@@ -18,7 +18,7 @@ export interface IState {
   theme: ThemeType
 }
 
-const useChatStore = (set : any) => ({
+const useStore = (set : any) => ({
   ...initialState,
   dispatch: ({ type, payload } : IAction) => set(
     (state : IState) => reducer(state, { type, payload }),
@@ -30,5 +30,5 @@ const useChatStore = (set : any) => ({
   ),  
 });
 
-export const useChat = create(devtools(useChatStore))
+export const useStoreHook = create(devtools(useStore))
 

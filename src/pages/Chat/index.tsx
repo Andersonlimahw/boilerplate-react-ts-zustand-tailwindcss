@@ -1,23 +1,16 @@
 import { ArrowLineLeft } from '@phosphor-icons/react';
 
-import { useFirebaseChat } from './hooks/use-firebase-chat';
-import { useChat } from '../../store/hooks/use-chat-store';
 import { Footer } from '../../commons/components/Footer';
+import { useHookSample } from './hooks';
+import { PeopleModel } from '../../models';
 
 export const Chat = () => {
-  const fireBaseStore = useFirebaseChat();
-
-  const {
-    selectedContact,
-    handleResetSelectedContact, 
-  } = fireBaseStore;
-
-  const chatStore = useChat();
-  const { theme } = chatStore;
 
 
-  const hasSelectedContact = selectedContact && selectedContact.id !== '';
+  const useHook = useHookSample();
+  const { loading, people, theme } = useHook;
 
+  const hasSelectedContact = false;
   const containerClasses = {
     'mobile': 'min-[0px]:block',
     'default': 'min-[690px]:flex flex'
@@ -33,12 +26,13 @@ export const Chat = () => {
   }
 
   const screnType = isMobile() ? 'mobile' : 'default';
+  const [firstPerson] = people as PeopleModel[];
 
   return (
     <>
      
       <div className={`w-full h-40 bg-gradient-to-r ${theme.styles.gradient}`} >
-        <ArrowLineLeft onClick={handleResetSelectedContact} size={48} className={`mx-2 py-2 cursor-pointer ${hasSelectedContact ? 'block' : 'hidden'}`} />
+        <ArrowLineLeft size={48} className={`mx-2 py-2 cursor-pointer ${hasSelectedContact ? 'block' : 'hidden'}`} />
       </div>
 
       <div className="container mx-auto mt-[-128px] rounded-sm">
@@ -60,6 +54,15 @@ export const Chat = () => {
             <div className={`animate-[wiggle_1s_ease-in-out_infinite] shadow-sm flex flex-col ${messagesContainerClasses[screnType]}`}>
               <h1>
                 Lets code!
+
+              
+              </h1>
+              <h1>
+                Api : Response 
+                <br />
+                count: {people?.length}
+                <br />
+                Name: {firstPerson?.name}
               </h1>
             </div>
           </div>

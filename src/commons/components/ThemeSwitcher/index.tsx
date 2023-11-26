@@ -1,6 +1,6 @@
 import { Palette } from "@phosphor-icons/react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useChat } from "../../../store/hooks/use-chat-store";
+import { useStoreHook } from "../../../store/hooks/use-store";
 import { EActionType } from "../../../store/flux";
 
 export const THEME_OPTIONS = [
@@ -8,8 +8,8 @@ export const THEME_OPTIONS = [
 ];
 
 export const ThemeSwitcher = () => {
-    const useChatStore = useChat((state: any) => state);
-    const { dispatch } = useChatStore;
+    const useStore = useStoreHook((state: any) => state);
+    const { dispatch } = useStore;
 
     function handleThemeChange(theme: string) {
         dispatch({

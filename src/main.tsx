@@ -10,8 +10,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Login } from './pages/Login/index.js';
 import { Chat } from './pages/Chat';
 
+import { startMirage } from './mocks/miragejs/index.js';
 
 import './index.css'
+
+if(import.meta.env.DEV) {
+  startMirage();
+} else {
+  console.log('Enviroment: ', import.meta.env);
+}
 
 const router = createBrowserRouter([
   {
@@ -23,6 +30,8 @@ const router = createBrowserRouter([
     element: <Chat />,
   }
 ]);
+
+
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

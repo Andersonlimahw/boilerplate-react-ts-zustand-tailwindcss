@@ -18,3 +18,5 @@ export interface IPostInput {
 }
 
 export type IPutInput = IPostInput;
+
+export type IDeleteInput = IGetInput;

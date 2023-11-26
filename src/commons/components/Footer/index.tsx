@@ -1,17 +1,15 @@
-import { signOut } from "firebase/auth";
 import { Power } from '@phosphor-icons/react';
-import { auth } from "../../../services";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 
 export function Footer() {
+    const navigate = useNavigate();
     const handleLogout = async () => {
         try {
-            await signOut(auth).then(() => {
-                toast('Goodbye!', { type: 'info' });
-            });
-            
+            toast('Goodbye!', { type: 'info' }); 
+            navigate('/');           
         } catch (error) {
             console.log(error);
             toast('Sorry! try again', { type: 'error' });

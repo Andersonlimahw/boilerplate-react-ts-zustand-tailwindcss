@@ -1,5 +1,5 @@
 import { BASE_URL, httpClient } from "../../commons/utils/requests";
-import { IGetInput, IPostInput, IPutInput } from "../../interfaces/Ibase-service";
+import { IDeleteInput, IGetInput, IPostInput, IPutInput } from "../../interfaces/Ibase-service";
 
 export default class BaseService<T> {
     protected baseUrl: string;
@@ -13,7 +13,10 @@ export default class BaseService<T> {
         params, 
         options
     }: IGetInput) : Promise<T> {
-        const requestUrl = `${this.baseUrl}/${endpoint}?${params}`
+        let requestUrl = `${this.baseUrl}/${endpoint}`
+        if(params) {
+            requestUrl += `?${params}`;
+        }
         return httpClient({
             url: requestUrl,
             options: {
@@ -62,6 +65,29 @@ export default class BaseService<T> {
             options: {
                 method: 'PUT',
                 body: JSON.stringify(requestBody),
+                headers: {
+                    'Content-Type': 'application/json', 
+                    ...options.headers,
+                },
+                ...options
+            }
+        })
+        .then((response : T) => response)
+        .catch((ex) => {
+            throw new Error(ex);
+        });;
+    }
+
+    public  async DeleteAsync({
+        endpoint, 
+        options,
+    }: IDeleteInput) : Promise<T> {
+        const requestUrl = `${this.baseUrl}/${endpoint}`
+        return httpClient({
+            url: requestUrl,
+            options: {
+                method: 'DELETE',
+                body: JSON.stringify({}),
                 headers: {
                     'Content-Type': 'application/json', 
                     ...options.headers,
